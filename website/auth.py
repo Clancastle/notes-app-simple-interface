@@ -28,22 +28,29 @@ def signup():
         fname = request.form.get('fname')
         pw = request.form.get('pw')
         pw2 = request.form.get('pw2')
-        print(email, fname, pw, pw2)
+        pass_p = "^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+        email_p = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
 
-        if len(fname) > 20 or fname.isdigit() or len(fname) < 3:
-            flash('Email', category='error')
-        elif bool(email):
-            pass #not equal to regex
-        elif pw:
-            #not equal to regex
-        elif pw != pw2:
+
+        if email:
+            pass
+        elif email:
             pass
 
+        if fname:
+            pass
+        elif fname:
+            pass
+
+        if re.match(pass_p, pw) == None:
+            flash("Password must contain 8 characters, lowercase letter, and a digit", category="error")
+            if pw != pw2:
+                flash('Passwords must match.', category='error')
 
     else:
         pass
-    # data = request.form
-    # print(data)
+    data = request.form
+    print(data)
     return render_template('signup.html')
 
 
